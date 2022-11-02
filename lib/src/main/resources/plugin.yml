@@ -1,0 +1,5 @@
+main: com.github.codesk-2022.mc-web-api.Plugin
+name: mc web api from codesk-2022
+version: 0.1.0
+api-version: 1.18
+author: github.com/codesk-2022
