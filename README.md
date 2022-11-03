@@ -7,7 +7,20 @@ mc-web-api is paper plugin for executing minecraft commands over http.
 
 send a message as tellraw.
 
+**request body**:
+```ts
+{
+  to?: string
+  content: any
+}
+```
+
 ### GET /status
 - [ ] is implemented?
 
 get server TPS.
+
+**response body**:
+```ts
+number
+```
