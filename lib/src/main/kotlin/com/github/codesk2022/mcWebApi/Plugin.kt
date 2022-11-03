@@ -7,5 +7,6 @@ public class Plugin: JavaPlugin() {
     this.getLogger().info("""
       Hello
     """)
+    server(this)
   }
 }
