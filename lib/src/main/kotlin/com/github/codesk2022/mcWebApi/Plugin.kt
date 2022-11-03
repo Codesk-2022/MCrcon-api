@@ -4,6 +4,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class Plugin: JavaPlugin() {
   override fun onEnable(){
+    saveDefaultConfig()
     this.getLogger().info("""
       Hello
     """)

@@ -8,7 +8,8 @@ import io.ktor.server.netty.*
 import com.github.codesk2022.mcWebApi.web.chat
 
 public fun server(plugin: Plugin): NettyApplicationEngine {
-  return embeddedServer(Netty) {
+  val config = plugin.getConfig();
+  return embeddedServer(Netty, port = config.getInt("port", host = config.getString("host"))) {
     routing {
       chat(this, plugin)
     }
