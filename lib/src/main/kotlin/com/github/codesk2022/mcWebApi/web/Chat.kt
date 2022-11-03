@@ -19,7 +19,7 @@ import com.github.codesk2022.mcWebApi.Plugin;
 @Serializable
 data class SendRequestBody(var to: String?, val content: JsonElement);
 
-public fun route(router: Route, plugin: Plugin){
+public fun chat(router: Route, plugin: Plugin){
   router.route("/chat"){
     post("/send"){
       val req = call.receive<SendRequestBody>();
