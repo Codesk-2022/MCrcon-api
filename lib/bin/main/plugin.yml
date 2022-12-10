@@ -1,6 +1,0 @@
-main: com.github.codesk2022.mcWebApi.Plugin
-name: mc-web-api
-description: web api for minecraft from codesk-2022
-version: 0.1.0
-api-version: 1.18
-author: github.com/codesk-2022
