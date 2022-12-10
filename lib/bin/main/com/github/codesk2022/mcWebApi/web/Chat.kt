@@ -24,27 +24,42 @@ data class SendRequestBody(var to: String?, val content: JsonElement);
 public fun chat(router: Route, plugin: Plugin){
   val queue = ArrayDeque<() -> Unit>()
 
+  suspend fun runAsSuspend(func: suspend () -> Unit){
+    func.invoke()
+  }
+
   router.route("/chat"){
     post("/send"){
       val req = call.receive<SendRequestBody>();
       if (req.to == null)req.to = "@a";
 
-      val content = (JsonPrimitive(req.content.toString()).toString())
-      call.respond("")
+      val content = (req.content.toString())
       queue.add {
-        plugin.server.dispatchCommand(plugin.server.getConsoleSender(), "tellraw ${req.to} ${content}")
+        try {
+          plugin.server.dispatchCommand(plugin.server.getConsoleSender(), "tellraw ${req.to} ${content}")
+          async
+        }
       }
     }
   }
 
+  fun proc(){
+    var f: (() -> Unit)?
+    while (queue.size != 0){
+      f = queue.removeLastOrNull()
+      if (f == null)break;
+      f()
+    }
+    (object: BukkitRunnable() {
+      public override fun run(){
+        proc()
+      }
+    }).runTaskLater(plugin, 10L)
+  }
+
   (object: BukkitRunnable() {
     public override fun run(){
-      var f: (() -> Unit)?
-      while (queue.size != 0){
-        f = queue.removeLastOrNull()
-        if (f == null)break;
-        f()
-      }
+      proc()
     }
-  }).runTaskTimer(plugin, 0, 20L * 5L)
+  }).runTaskLater(plugin, 10L)
 }

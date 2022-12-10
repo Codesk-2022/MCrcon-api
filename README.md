@@ -1,26 +1,29 @@
 # mc-web-api
-mc-web-api is paper plugin for executing minecraft commands over http.
+mc-web-api is paper plugin for server utilities.
 
 ## usage
 ### POST /chat/send
-- [ ] is implemented?
+メッセージを送信します。
+#### request
+##### header
+|name         |value            |
+|-------------|-----------------|
+|Content-Type |application/json |
+##### body
+|name     |type |
+|---------|-----|
+|duration |int  |
 
-send a message as tellraw.
+#### response
+returns same value as request body.
 
-**request body**:
-```ts
-{
-  to?: string
-  content: any
-}
-```
+### GET /status/minute
+分単位でTPSを取得します。
+#### request
+##### query params
+|name     |type |
+|---------|-----|
+|duration |int  |
 
-### GET /status
-- [ ] is implemented?
-
-get server TPS.
-
-**response body**:
-```ts
-number
-```
+#### response
+returns a real number.
