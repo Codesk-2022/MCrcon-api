@@ -1,5 +1,5 @@
-# mc-web-api
-mc-web-api is paper plugin for server utilities.
+# mc2md-api
+mc2md-api is paper plugin for server utilities.
 
 ## usage
 ### POST /chat/send

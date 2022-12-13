@@ -1,1 +1,1 @@
-nodemon -e kt -w lib/src --exec pwsh -c "./gradlew build shadow ; docker stop paperdevelop-1.18.2 ; cp -Force M:\githubrepositry\@codesk\mc-web-api\lib\build\libs\lib.jar M:\githubrepositry\@codesk\@debug\mc\plugins\lib.jar ; docker restart paperdevelop-1.18.2" 
+nodemon -e kt -w lib/src --exec pwsh -c "./gradlew build shadow ; docker stop paperdevelop-1.18.2 ; cp -Force .\lib\build\libs\lib.jar ..\@debug\mc\plugins\lib.jar ; docker restart paperdevelop-1.18.2" 
